@@ -2,10 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import myImg from "../../Assets/avatar.svg";
 import Tilt from "react-parallax-tilt";
-import {
-  AiFillGithub,
-  AiOutlineTwitter,
-} from "react-icons/ai";
+import { AiFillGithub, AiOutlineTwitter, AiFillMail } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 
 function Home2() {
@@ -46,6 +43,14 @@ function Home2() {
               Let’s <span className="purple">connect</span> and collaborate!
             </p>
             <ul className="home-about-social-links">
+              <li className="social-icons">
+                <a
+                  href="mailto:pavan123@gmail.com"
+                  className="icon-colour home-social-icons"
+                >
+                  <AiFillMail />
+                </a>
+              </li>
               <li className="social-icons">
                 <a
                   href="https://github.com/pavank-v"
