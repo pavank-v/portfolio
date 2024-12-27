@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/portfolio/static/css/main.31b09721.css",
-    "main.js": "/portfolio/static/js/main.ec6a9872.js",
+    "main.js": "/portfolio/static/js/main.c69324bc.js",
     "static/js/415.4d6acbeb.chunk.js": "/portfolio/static/js/415.4d6acbeb.chunk.js",
     "static/js/787.1ed0c42c.chunk.js": "/portfolio/static/js/787.1ed0c42c.chunk.js",
     "static/media/prism.jpg": "/portfolio/static/media/prism.cb7bc339371fca0e59ac.jpg",
     "static/media/apple.png": "/portfolio/static/media/apple.45c4852608a66631d160.png",
     "static/media/fitty.jpg": "/portfolio/static/media/fitty.ea1613a26cad574c7822.jpg",
     "static/media/python-scripts.jpg": "/portfolio/static/media/python-scripts.34e3b19883c101e33a6f.jpg",
-    "static/media/resume_pavan_kumar.pdf": "/portfolio/static/media/resume_pavan_kumar.41b96f271d547edb3ac1.pdf",
     "static/media/data-structures.jpeg": "/portfolio/static/media/data-structures.52a19ac6a2532b3562da.jpeg",
+    "static/media/resume_pavan_kumar.pdf": "/portfolio/static/media/resume_pavan_kumar.ebc949f36b14975d4002.pdf",
     "static/media/book-api.png": "/portfolio/static/media/book-api.24632bd6e43f679d3ddc.png",
     "static/media/home-main.svg": "/portfolio/static/media/home-main.541f8179af8209ce03ccf2178fe62dbf.svg",
     "static/media/about.png": "/portfolio/static/media/about.aee0f771fbfc1e7b8fa8.png",
@@ -18,12 +18,12 @@
     "static/media/pre.svg": "/portfolio/static/media/pre.84272464099b038fe50d.svg",
     "index.html": "/portfolio/index.html",
     "main.31b09721.css.map": "/portfolio/static/css/main.31b09721.css.map",
-    "main.ec6a9872.js.map": "/portfolio/static/js/main.ec6a9872.js.map",
+    "main.c69324bc.js.map": "/portfolio/static/js/main.c69324bc.js.map",
     "415.4d6acbeb.chunk.js.map": "/portfolio/static/js/415.4d6acbeb.chunk.js.map",
     "787.1ed0c42c.chunk.js.map": "/portfolio/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.31b09721.css",
-    "static/js/main.ec6a9872.js"
+    "static/js/main.c69324bc.js"
   ]
 }
