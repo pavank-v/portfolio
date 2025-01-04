@@ -45,7 +45,7 @@ function Home2() {
             <ul className="home-about-social-links">
               <li className="social-icons">
                 <a
-                  href="mailto:pavan123@gmail.com"
+                  href="mailto:pavankumarv.dev@gmail.com"
                   className="icon-colour home-social-icons"
                 >
                   <AiFillMail />
