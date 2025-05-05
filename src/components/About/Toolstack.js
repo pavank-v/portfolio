@@ -3,9 +3,9 @@ import { Col, Row } from "react-bootstrap";
 import {
   SiVisualstudiocode,
   SiPostman,
-  SiVercel,
   SiLinux,
   SiGithub,
+  SiRender,
 } from "react-icons/si";
 
 function Toolstack() {
@@ -24,7 +24,7 @@ function Toolstack() {
         <SiGithub />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiVercel />
+        <SiRender />
       </Col>
     </Row>
   );

@@ -4,13 +4,12 @@ import {
   DiJavascript1,
   DiReact,
   DiPython,
-  DiGit,
+  DiRust,
 
 } from "react-icons/di";
 import {
   SiC,
   SiPostgresql,
-  SiMysql,
 } from "react-icons/si";
 import { TbBrandGolang } from "react-icons/tb";
 
@@ -19,6 +18,9 @@ function Techstack() {
     <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
       <Col xs={4} md={2} className="tech-icons">
         <DiPython />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <DiRust />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
         <DiJavascript1 />
@@ -36,7 +38,7 @@ function Techstack() {
         <div
           style={{
             fontSize: "2.5rem",
-            fontWeight: "bold",
+            fontWeight: "normal",
             color: 'white',
             borderRadius: "5px",
             paddingTop: "20px",
@@ -47,13 +49,35 @@ function Techstack() {
         </div>
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <DiGit />
+        <div
+          style={{
+            fontSize: "2.5rem",
+            fontWeight: "normal",
+            color: 'white',
+            borderRadius: "5px",
+            paddingTop: "20px",
+            textAlign: "center",
+          }}
+        >
+          Actix-web
+        </div>
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <div
+          style={{
+            fontSize: "2.5rem",
+            fontWeight: "normal",
+            color: 'white',
+            borderRadius: "5px",
+            paddingTop: "20px",
+            textAlign: "center",
+          }}
+        >
+          Flask
+        </div>
       </Col>
       <Col xs={4} md={2} className="tech-icons">
         <SiPostgresql />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiMysql />
       </Col>
     </Row>
   );

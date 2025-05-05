@@ -2,12 +2,13 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
-import fitness from "../../Assets/Projects/fitty.jpg"
-import prism from "../../Assets/Projects/prism.jpg"
-import apple from "../../Assets/Projects/apple.png"
-import book from "../../Assets/Projects/book-api.png"
-import python from "../../Assets/Projects/python-scripts.jpg"
-import ds from "../../Assets/Projects/data-structures.jpeg"
+import fitness from "../../Assets/Projects/fitty.png";
+import audio from "../../Assets/Projects/audio.png";
+import prism from "../../Assets/Projects/prism.jpg";
+import apple from "../../Assets/Projects/apple.png";
+import book from "../../Assets/Projects/book-api.png";
+import python from "../../Assets/Projects/python-scripts.jpg";
+import ds from "../../Assets/Projects/data-structures.jpeg";
 
 function Projects() {
   return (
@@ -25,8 +26,22 @@ function Projects() {
             <ProjectCard
               imgPath={fitness}
               isBlog={false}
-              title="Fitty-app"
-              description="The Fitness Tracker helps users monitor workouts, track calories, and manage personalized fitness plans. Built with Django and React, it offers secure JWT authentication, dynamic calorie updates, and an intuitive interface, making fitness management accessible and effective for users of all levels."
+              title="MetaFit"
+              description="The Fitness Tracker helps users monitor workouts, track calories, 
+              and manage personalized fitness plans. Built with Django and React, it offers secure 
+              JWT authentication, dynamic calorie updates, and an intuitive interface, making fitness 
+              management accessible and effective for users of all levels."
+              ghLink="https://github.com/pavank-v/fitness-tracker"
+              demoLink=""
+            />
+          </Col>
+
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={audio}
+              isBlog={false}
+              title="Audio Forgery Detection Model"
+              description="This project detects audio copy-move forgeries, where a segment of an audio file is copied and pasted elsewhere within the same file to alter its content. It transforms audio into spectrograms, extracts keypoints, identifies high-frequency ranges, generates graph images using advanced graph techniques, and classifies them as forged or genuine using a Convolutional Neural Network (CNN)"
               ghLink="https://github.com/pavank-v/fitness-tracker"
               demoLink=""
             />

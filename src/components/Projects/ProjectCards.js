@@ -10,7 +10,7 @@ function ProjectCards(props) {
       <Card.Img variant="top" src={props.imgPath} alt="card-img" />
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
-        <Card.Text style={{ textAlign: "justify" }}>
+        <Card.Text>
           {props.description}
         </Card.Text>
         <Button variant="primary" href={props.ghLink} target="_blank">
@@ -19,8 +19,6 @@ function ProjectCards(props) {
         </Button>
         {"\n"}
         {"\n"}
-
-        {/* If the component contains Demo link and if it's not a Blog then, it will render the below component  */}
 
         {!props.isBlog && props.demoLink && (
           <Button
