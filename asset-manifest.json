@@ -1,29 +1,30 @@
 {
   "files": {
     "main.css": "/portfolio/static/css/main.0952ea1d.css",
-    "main.js": "/portfolio/static/js/main.7568ec01.js",
+    "main.js": "/portfolio/static/js/main.aa3c2fb3.js",
     "static/js/415.4d6acbeb.chunk.js": "/portfolio/static/js/415.4d6acbeb.chunk.js",
     "static/js/787.1ed0c42c.chunk.js": "/portfolio/static/js/787.1ed0c42c.chunk.js",
+    "static/media/audio.png": "/portfolio/static/media/audio.e10c55db00b703d7362c.png",
     "static/media/prism.jpg": "/portfolio/static/media/prism.cb7bc339371fca0e59ac.jpg",
     "static/media/apple.png": "/portfolio/static/media/apple.45c4852608a66631d160.png",
-    "static/media/fitty.jpg": "/portfolio/static/media/fitty.ea1613a26cad574c7822.jpg",
     "static/media/python-scripts.jpg": "/portfolio/static/media/python-scripts.34e3b19883c101e33a6f.jpg",
+    "static/media/fitty.png": "/portfolio/static/media/fitty.5b8ac7b84dc0e6c18402.png",
     "static/media/data-structures.jpeg": "/portfolio/static/media/data-structures.52a19ac6a2532b3562da.jpeg",
     "static/media/book-api.png": "/portfolio/static/media/book-api.24632bd6e43f679d3ddc.png",
     "static/media/home-main.svg": "/portfolio/static/media/home-main.541f8179af8209ce03ccf2178fe62dbf.svg",
     "static/media/about.png": "/portfolio/static/media/about.aee0f771fbfc1e7b8fa8.png",
-    "static/media/resume_pavan_kumar.pdf": "/portfolio/static/media/resume_pavan_kumar.85f6f27f99f00555168f.pdf",
+    "static/media/resume_pavan_kumar.pdf": "/portfolio/static/media/resume_pavan_kumar.be4ec4f015335afcf9a4.pdf",
     "static/media/home-bg.jpg": "/portfolio/static/media/home-bg.dc52d5d40a40b13154b0.jpg",
     "static/media/avatar.svg": "/portfolio/static/media/avatar.5852f40fbb38aa284829fa3fb7722225.svg",
     "static/media/pre.svg": "/portfolio/static/media/pre.84272464099b038fe50d.svg",
     "index.html": "/portfolio/index.html",
     "main.0952ea1d.css.map": "/portfolio/static/css/main.0952ea1d.css.map",
-    "main.7568ec01.js.map": "/portfolio/static/js/main.7568ec01.js.map",
+    "main.aa3c2fb3.js.map": "/portfolio/static/js/main.aa3c2fb3.js.map",
     "415.4d6acbeb.chunk.js.map": "/portfolio/static/js/415.4d6acbeb.chunk.js.map",
     "787.1ed0c42c.chunk.js.map": "/portfolio/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0952ea1d.css",
-    "static/js/main.7568ec01.js"
+    "static/js/main.aa3c2fb3.js"
   ]
 }
