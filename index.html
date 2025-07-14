@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pavan's - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+    * {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .terminal-cursor {
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      50% {
+        opacity: 1;
+      }
+
+      51%,
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hover-glow:hover {
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+    }
+
+    .typing-animation {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #22c55e;
+      animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes blink-caret {
+
+      from,
+      to {
+        border-color: transparent;
+      }
+
+      50% {
+        border-color: #22c55e;
+      }
+    }
+
+    .project-card {
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+    .skill-tag {
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+
+    .matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.1;
+    }
+
+    .floating-code {
+      position: absolute;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: rgba(34, 197, 94, 0.3);
+      pointer-events: none;
+      animation: float 20s linear infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .grid-pattern {
+      background-image:
+        linear-gradient(rgba(34, 197, 94, 1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 197, 94, 1) 1px, transparent 1px);
+      background-size: 30px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -2;
+      opacity: 0.15;
+    }
+
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(34, 197, 94, 1);
+      border-radius: 100%;
+      animation: particle-float 0s linear infinite;
+    }
+
+    @keyframes particle-float {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100px) translateX(100px);
+        opacity: 0;
+      }
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.98);
+      backdrop-filter: blur(10px);
+      border-left: 1px solid rgba(34, 197, 94, 0.3);
+      transition: right 0.3s ease-in-out;
+      z-index: 999;
+      padding: 80px 30px 30px;
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(34, 197, 94, 0.1);
+      color: #22c55e;
+      text-decoration: none;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu a:hover {
+      color: #16a34a;
+      padding-left: 10px;
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active .hamburger-line:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active .hamburger-line:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    .hamburger-line {
+      width: 25px;
+      height: 2px;
+      background: #22c55e;
+      margin: 3px 0;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @media (max-width: 768px) {
+      .floating-code {
+        font-size: 10px;
+      }
+
+      .particle {
+        width: 1px;
+        height: 1px;
+      }
+
+      .grid-pattern {
+        background-size: 30px 30px;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-black text-green-400 min-h-screen relative overflow-x-hidden">
+  <div class="grid-pattern">hello</div>
+  <div class="particles" id="particles"></div>
+  <div class="matrix-bg" id="matrix-bg"></div>
+
+  <nav class="fixed top-0 w-full bg-black/90 backdrop-blur-sm border-b border-green-900/30 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4">
+      <div class="flex justify-between items-center">
+        <div class="text-green-400 font-semibold text-sm sm:text-base">
+          <a href="#hero" class="hover:text-green-500 transition-colors">
+            <span class="text-green-500">$</span> whoami
+          </a>
+        </div>
+        <div class="hidden md:flex space-x-8">
+          <a href="#about" class="hover:text-green-500 transition-colors">about</a>
+          <a href="#experience" class="hover:text-green-500 transition-colors">experience</a>
+          <a href="#projects" class="hover:text-green-500 transition-colors">projects</a>
+          <a href="#skills" class="hover:text-green-500 transition-colors">skills</a>
+          <a href="#contact" class="hover:text-green-500 transition-colors">contact</a>
+        </div>
+        <div class="md:hidden hamburger" id="menu-toggle">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about" class="mobile-menu-link">about</a>
+    <a href="#experience" class="mobile-menu-link">experience</a>
+    <a href="#projects" class="mobile-menu-link">projects</a>
+    <a href="#skills" class="mobile-menu-link">skills</a>
+    <a href="#contact" class="mobile-menu-link">contact</a>
+  </div>
+
+  <section id="#hero" class="min-h-screen flex items-center justify-center px-4 sm:px-6 pt-20">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="mb-8">
+        <div class="text-green-500 text-xs sm:text-sm mb-2">
+          <span class="text-green-600">~$</span> cat introduction.txt
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold mb-4">
+          <span class="text-green-500">></span> Pavan Kumar
+        </h1>
+        <div class="text-lg sm:text-xl md:text-2xl text-green-400 mb-6">
+          <span id="typed-text" class="typing-animation">Software Developer & Tech Enthusiast</span>
+        </div>
+      </div>
+
+      <div class="text-green-300 text-sm sm:text-base max-w-2xl mx-auto mb-8 leading-relaxed px-4">
+        <p>Building secure, scalable solutions and exploring the depths of technology.
+          Passionate about clean code, innovative problem-solving, and continuous learning.</p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 px-4">
+        <a href="#projects"
+          class="bg-green-900/30 border border-green-500 px-6 py-3 rounded hover-glow transition-all duration-300 hover:bg-green-900/50">
+          View Projects
+        </a>
+        <a href="#contact"
+          class="border border-green-400 px-6 py-3 rounded hover:bg-green-400 hover:text-black transition-all duration-300">
+          Get In Touch
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-12 sm:py-20 px-4 sm:px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="mb-8 sm:mb-12">
+        <div class="text-green-500 text-xs sm:text-sm mb-2">
+          <span class="text-green-600">~$</span> cat about.md
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold mb-8">
+          <span class="text-green-500"># </span>About Me
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+        <div class="space-y-4 sm:space-y-6 text-green-300">
+          <p class="leading-relaxed text-sm sm:text-base">
+            I'm a passionate developer with 6 months of experience in building web applications
+            and automation. I love turning complex problems into simple, elegant solutions.
+          </p>
+          <p class="leading-relaxed text-sm sm:text-base">
+            When I'm not coding, you'll find me learning about the latest technologies,
+            or tinkering with new technologies.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 text-xs sm:text-sm">
+            <span class="bg-green-900/30 px-3 py-1 rounded border border-green-500/30">
+              Location: Tamil Nadu, India
+            </span>
+            <span class="bg-green-900/30 px-3 py-1 rounded border border-green-500/30">
+              Available for work
+            </span>
+          </div>
+        </div>
+
+        <div class="bg-green-900/10 border border-green-500/30 rounded-lg p-4 sm:p-6">
+          <div class="text-green-500 text-xs sm:text-sm mb-4">
+            <span class="text-green-600">~$</span> ls -la interests/
+          </div>
+          <div class="space-y-2 text-green-300 text-sm sm:text-base">
+            <div>→ Software Development</div>
+            <div>→ Embedded Systems</div>
+            <div>→ Open Source</div>
+            <div>→ Problem Solving</div>
+            <div>→ Learning New Tech</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="py-20 px-6 bg-green-900/5">
+    <div class="max-w-4xl mx-auto">
+      <div class="mb-12">
+        <div class="text-green-500 text-sm mb-2">
+          <span class="text-green-600">~$</span> cat experience.log
+        </div>
+        <h2 class="text-3xl font-bold mb-8">
+          <span class="text-green-500"># </span>Experience
+        </h2>
+      </div>
+
+      <div class="space-y-8">
+        <div class="border-l-2 border-green-500 pl-6">
+          <div class="bg-green-900/20 border border-green-500/30 rounded-lg p-6">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h3 class="text-xl font-semibold text-green-400">Rust Developer Intern</h3>
+                <p class="text-green-300">Qualyval</p>
+              </div>
+              <span class="text-green-500 text-sm">Mar 2025 - June 2025</span>
+            </div>
+            <p class="text-green-300 mb-4">
+              Developed a WhatsApp automation and monitoring system in Rust using Chromium Oxide,
+              reducing manual monitoring efforts by over 80% through efficient headless browser control.
+              Built high-performance REST APIs with Actix-web and optimized data operations with LMDB,
+              achieving microsecond-level read latency and significantly faster write performance compared to
+              traditional databases.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag px-3 py-1 rounded text-sm">Rust</span>
+              <span class="skill-tag px-3 py-1 rounded text-sm">Actix-web</span>
+              <span class="skill-tag px-3 py-1 rounded text-sm">LMDB</span>
+              <span class="skill-tag px-3 py-1 rounded text-sm">JavaScript</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-l-2 border-green-500 pl-6">
+          <div class="bg-green-900/20 border border-green-500/30 rounded-lg p-6">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h3 class="text-xl font-semibold text-green-400">Software Developer Intern</h3>
+                <p class="text-green-300">CypherSage</p>
+              </div>
+              <span class="text-green-500 text-sm">Dec 2025 - Mar 2025</span>
+            </div>
+            <p class="text-green-300 mb-4">
+              Re-architected and rebuilt a client's entire front-end, resulting in a 35% improvement in page load speed
+              and a notable boost in SEO rankings.
+              Delivered a server-rendered web application using Node.js and Express, handling 1,000+ concurrent users
+              under
+              production load
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag px-3 py-1 rounded text-sm">Node</span>
+              <span class="skill-tag px-3 py-1 rounded text-sm">Express</span>
+              <span class="skill-tag px-3 py-1 rounded text-sm">ejs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="mb-12">
+        <div class="text-green-500 text-sm mb-2">
+          <span class="text-green-600">~$</span> ls -la projects/
+        </div>
+        <h2 class="text-3xl font-bold mb-8">
+          <span class="text-green-500"># </span>Projects
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="project-card rounded-lg p-6 hover-glow transition-all duration-300">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-semibold text-green-400">Audio Forgery Detection</h3>
+            <div class="flex space-x-2">
+              <a href="https://github.com/pavank-v/audio-forgery-detection" class="text-green-500 hover:text-green-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <p class="text-green-300 mb-4">
+            Built a deep learning model for audio forgery detection using graph-based spectrogram embeddings, achieving
+            92% accuracy with improved precision and recall.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-2 py-1 rounded text-xs">Python</span>
+            <span class="skill-tag px-2 py-1 rounded text-xs">TensorFlow</span>
+            <span class="skill-tag px-2 py-1 rounded text-xs">Django</span>
+          </div>
+        </div>
+
+        <div class="project-card rounded-lg p-6 hover-glow transition-all duration-300">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-semibold text-green-400">MetaFit</h3>
+            <div class="flex space-x-2">
+              <a href="https://github.com/pavank-v/fitness-tracker" class="text-green-500 hover:text-green-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <p class="text-green-300 mb-4">
+            Built MetaFit, a personalized fitness tracker with a scalable Django backend and React/Next.js frontend,
+            supporting 10+ workouts and 100K+ food entries.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-2 py-1 rounded text-xs">Python</span>
+            <span class="skill-tag px-2 py-1 rounded text-xs">Django</span>
+            <span class="skill-tag px-2 py-1 rounded text-xs">Next.js</span>
+          </div>
+        </div>
+
+        <div class="project-card rounded-lg p-6 hover-glow transition-all duration-300">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-semibold text-green-400">Prism</h3>
+            <div class="flex space-x-2">
+              <a href="#" class="text-green-500 hover:text-green-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z">
+                  </path>
+                  <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                </svg>
+              </a>
+              <a href="https://github.com/pavank-v/interpreter-with-go" class="text-green-500 hover:text-green-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <p class="text-green-300 mb-4">
+            Built a custom interpreter in Go for a domain-specific language with variables, functions, and control flow,
+            featuring a modular lexer, parser, and evaluator for efficient runtime execution.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-2 py-1 rounded text-xs">Golang</span>
+          </div>
+        </div>
+        <div class="project-card rounded-lg p-6 hover-glow transition-all duration-300">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-semibold text-green-400">Apple's Website</h3>
+            <div class="flex space-x-2">
+              <a href="https://iphone-8x53ysvyq-pavans-projects-9dcac2cd.vercel.app/"
+                class="text-green-500 hover:text-green-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z">
+                  </path>
+                  <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                </svg>
+              </a>
+              <a href="https://github.com/pavank-v/Iphone" class="text-green-500 hover:text-green-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <p class="text-green-300 mb-4">
+            Designed an immersive iPhone showcase using React, Three.js, and GSAP, combining sleek UI with interactive
+            3D visuals to highlight features, specs, and pricing.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-2 py-1 rounded text-xs">React</span>
+            <span class="skill-tag px-2 py-1 rounded text-xs">Three.js</span>
+            <span class="skill-tag px-2 py-1 rounded text-xs">GSAP</span>
+          </div>
+        </div>
+        <div class="project-card rounded-lg p-6 hover-glow transition-all duration-300">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-semibold text-green-400">Book API</h3>
+            <div class="flex space-x-2">
+              <a href="https://github.com/pavank-v/book_api" class="text-green-500 hover:text-green-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <p class="text-green-300 mb-4">
+            Built a Django-based Book API that scrapes Amazon, Flipkart, and Goodreads using BeautifulSoup to provide
+            organized, searchable book details for an enhanced browsing experience.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-2 py-1 rounded text-xs">Python</span>
+            <span class="skill-tag px-2 py-1 rounded text-xs">Django</span>
+            <span class="skill-tag px-2 py-1 rounded text-xs">BeautifulSoup</span>
+          </div>
+        </div>
+        <div class="project-card rounded-lg p-6 hover-glow transition-all duration-300">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-semibold text-green-400">TrendScrapper</h3>
+            <div class="flex space-x-2">
+              <a href="https://github.com/pavank-v/trend-scraper" class="text-green-500 hover:text-green-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <p class="text-green-300 mb-4">
+            Developed a Selenium-based scraper to fetch trending topics from X.com, using rotating proxies to avoid
+            blocks and storing results in MongoDB. Built a Flask interface to trigger scraping and display topics, IP
+            used, and stored records.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-2 py-1 rounded text-xs">Python</span>
+            <span class="skill-tag px-2 py-1 rounded text-xs">Selenium</span>
+            <span class="skill-tag px-2 py-1 rounded text-xs">Flask</span>
+            <span class="skill-tag px-2 py-1 rounded text-xs">MongoDB</span>
+          </div>
+        </div>
+        <div class="project-card rounded-lg p-6 hover-glow transition-all duration-300">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-semibold text-green-400">Data Structure Library for C</h3>
+            <div class="flex space-x-2">
+              <a href="https://github.com/pavank-v/Data-Structures-C" class="text-green-500 hover:text-green-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <p class="text-green-300 mb-4">
+            Developed a C library of core data structures—stack, queue, list, hashmaps, and graphs—designed for
+            efficient integration and reusable system-level programming.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-2 py-1 rounded text-xs">C</span>
+          </div>
+        </div>
+        <div class="project-card rounded-lg p-6 hover-glow transition-all duration-300">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-semibold text-green-400">Python Scripts</h3>
+            <div class="flex space-x-2">
+              <a href="https://github.com/pavank-v/Python-Scripts" class="text-green-500 hover:text-green-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <p class="text-green-300 mb-4">
+            A collection of useful Python scripts including file automation, web scraping with BeautifulSoup.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-2 py-1 rounded text-xs">Python</span>
+            <span class="skill-tag px-2 py-1 rounded text-xs">BeautifulSoup</span>
+            <span class="skill-tag px-2 py-1 rounded text-xs">Pandas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="py-20 px-6 bg-green-900/5">
+    <div class="max-w-4xl mx-auto">
+      <div class="mb-12">
+        <div class="text-green-500 text-sm mb-2">
+          <span class="text-green-600">~$</span> cat skills.json
+        </div>
+        <h2 class="text-3xl font-bold mb-8">
+          <span class="text-green-500"># </span>Skills
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="space-y-4">
+          <h3 class="text-xl font-semibold text-green-400 mb-4">Programming</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-3 py-1 rounded">Python</span>
+            <span class="skill-tag px-3 py-1 rounded">Java</span>
+            <span class="skill-tag px-3 py-1 rounded">Rust</span>
+            <span class="skill-tag px-3 py-1 rounded">C</span>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="text-xl font-semibold text-green-400 mb-4">Backend</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-3 py-1 rounded">Node.js</span>
+            <span class="skill-tag px-3 py-1 rounded">Django</span>
+            <span class="skill-tag px-3 py-1 rounded">Actix-web</span>
+            <span class="skill-tag px-3 py-1 rounded">REST APIs</span>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="text-xl font-semibold text-green-400 mb-4">Database</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-3 py-1 rounded">PostgreSQL</span>
+            <span class="skill-tag px-3 py-1 rounded">MongoDB</span>
+            <span class="skill-tag px-3 py-1 rounded">LMDB</span>
+            <span class="skill-tag px-3 py-1 rounded">MySQL</span>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="text-xl font-semibold text-green-400 mb-4">Tools</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-3 py-1 rounded">Linux</span>
+            <span class="skill-tag px-3 py-1 rounded">Git</span>
+            <span class="skill-tag px-3 py-1 rounded">VS Code</span>
+            <span class="skill-tag px-3 py-1 rounded">Postman</span>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="text-xl font-semibold text-green-400 mb-4">Frontend</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-3 py-1 rounded">JavaScript</span>
+            <span class="skill-tag px-3 py-1 rounded">HTML/CSS</span>
+            <span class="skill-tag px-3 py-1 rounded">Tailwind</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-20 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="mb-12">
+        <div class="text-green-500 text-sm mb-2">
+          <span class="text-green-600">~$</span> cat contact.txt
+        </div>
+        <h2 class="text-3xl font-bold mb-8">
+          <span class="text-green-500"># </span>Get In Touch
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <div class="space-y-6">
+          <p class="text-green-300 text-lg">
+            Let's build something amazing together. I'm always interested in new opportunities and collaborations.
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex items-center space-x-4">
+              <div
+                class="w-10 h-10 bg-green-900/30 border border-green-500/30 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="text-green-400 font-semibold">Email</div>
+                <div class="text-green-300">pavankumarv.dev@gmail.com</div>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+              <div
+                class="w-10 h-10 bg-green-900/30 border border-green-500/30 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="text-green-400 font-semibold">Location</div>
+                <div class="text-green-300">Tamil Nadu, India</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex space-x-4 pt-4">
+            <a href="https://github.com/pavank-v" target="_blank"
+              class="w-10 h-10 bg-green-900/30 border border-green-500/30 rounded-lg flex items-center justify-center hover-glow transition-all duration-300 hover:bg-green-900/50">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd"
+                  d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </a>
+            <a href="https://linkedin.com/in/pavank-v" target="_blank"
+              class="w-10 h-10 bg-green-900/30 border border-green-500/30 rounded-lg flex items-center justify-center hover-glow transition-all duration-300 hover:bg-green-900/50">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd"
+                  d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </a>
+            <a href="https://x.com/pavan_k13" target="_blank"
+              class="w-10 h-10 bg-green-900/30 border border-green-500/30 rounded-lg flex items-center justify-center hover-glow transition-all duration-300 hover:bg-green-900/50">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84">
+                </path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-green-900/10 border border-green-500/30 rounded-lg p-6">
+          <div class="text-green-500 text-sm mb-4">
+            <span class="text-green-600">~$</span> send-message
+          </div>
+
+          <div id="message-container"></div>
+
+          <form id="contact-form" class="space-y-4">
+            <div>
+              <input type="text" id="name" name="name" placeholder="Name" required
+                class="w-full bg-black border border-green-500/30 rounded px-4 py-2 text-green-300 placeholder-green-500/50 focus:border-green-500 focus:outline-none transition-colors">
+            </div>
+            <div>
+              <input type="email" id="email" name="email" placeholder="Email" required
+                class="w-full bg-black border border-green-500/30 rounded px-4 py-2 text-green-300 placeholder-green-500/50 focus:border-green-500 focus:outline-none transition-colors">
+            </div>
+            <div>
+              <textarea id="message" name="message" placeholder="Message" rows="4" required
+                class="w-full bg-black border border-green-500/30 rounded px-4 py-2 text-green-300 placeholder-green-500/50 focus:border-green-500 focus:outline-none resize-none transition-colors"></textarea>
+            </div>
+            <button type="submit" id="submit-btn"
+              class="w-full bg-green-900/30 border border-green-500 px-6 py-3 rounded hover-glow transition-all duration-300 hover:bg-green-900/50 text-green-400 disabled:opacity-50 disabled:cursor-not-allowed">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-8 px-6 border-t border-green-900/30">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="text-green-500 text-sm mb-2">
+        <span class="text-green-600">~$</span> exit
+      </div>
+      <p class="text-green-400">
+        © 2025 Pavan Kumar. Built with passion and caffeine.
+      </p>
+      <p class="text-green-500/50 text-sm mt-2">
+        "Code is poetry written in logic"
+      </p>
+    </div>
+  </footer>
+  
+  <script>
+    class ContactForm {
+      constructor() {
+        this.form = document.getElementById('contact-form');
+        this.messageContainer = document.getElementById('message-container');
+        this.submitBtn = document.getElementById('submit-btn');
+        this.originalBtnText = this.submitBtn.textContent;
+
+        this.init();
+      }
+
+      init() {
+        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+        this.addInputValidation();
+      }
+
+      addInputValidation() {
+        const inputs = this.form.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+          input.addEventListener('blur', () => this.validateInput(input));
+          input.addEventListener('input', () => this.clearInputError(input));
+        });
+      }
+
+      validateInput(input) {
+        const value = input.value.trim();
+
+        if (!value) {
+          this.showInputError(input, 'This field is required');
+          return false;
+        }
+
+        if (input.type === 'email' && !this.isValidEmail(value)) {
+          this.showInputError(input, 'Please enter a valid email address');
+          return false;
+        }
+
+        this.clearInputError(input);
+        return true;
+      }
+
+      showInputError(input, message) {
+        input.classList.add('border-red-500');
+        input.classList.remove('border-green-500/30');
+
+        let errorMsg = input.parentNode.querySelector('.error-text');
+        if (!errorMsg) {
+          errorMsg = document.createElement('div');
+          errorMsg.className = 'error-text text-red-400 text-sm mt-1';
+          input.parentNode.appendChild(errorMsg);
+        }
+        errorMsg.textContent = message;
+      }
+
+      clearInputError(input) {
+        input.classList.remove('border-red-500');
+        input.classList.add('border-green-500/30');
+
+        const errorMsg = input.parentNode.querySelector('.error-text');
+        if (errorMsg) {
+          errorMsg.remove();
+        }
+      }
+
+      isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+
+      async handleSubmit(e) {
+        e.preventDefault();
+
+        if (!this.validateForm()) {
+          return;
+        }
+
+        const formData = this.getFormData();
+
+        try {
+          this.setLoading(true);
+          await this.sendMessage(formData);
+          this.showSuccess('Email client opened! Please send the pre-filled email to complete your message.');
+          this.form.reset();
+        } catch (error) {
+          this.showError('Unable to open email client. Please contact me directly at pavankumarv.dev@gmail.com');
+        } finally {
+          this.setLoading(false);
+        }
+      }
+
+      validateForm() {
+        const inputs = this.form.querySelectorAll('input, textarea');
+        let isValid = true;
+
+        inputs.forEach(input => {
+          if (!this.validateInput(input)) {
+            isValid = false;
+          }
+        });
+
+        return isValid;
+      }
+
+      getFormData() {
+        return {
+          name: document.getElementById('name').value.trim(),
+          email: document.getElementById('email').value.trim(),
+          message: document.getElementById('message').value.trim()
+        };
+      }
+
+      async sendMessage(formData) {
+        // Create mailto link with pre-filled data
+        const subject = encodeURIComponent(`Portfolio Contact: Message from ${formData.name}`);
+        const body = encodeURIComponent(`Name: ${formData.name}
+Email: ${formData.email}
+
+Message:
+${formData.message}
+
+---
+Sent from your portfolio contact form`);
+
+        const mailtoLink = `mailto:pavankumarv.dev@gmail.com?subject=${subject}&body=${body}`;
+
+        // Open email client
+        window.location.href = mailtoLink;
+
+        // Return success after a short delay
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve({ success: true });
+          }, 500);
+        });
+      }
+
+      setLoading(isLoading) {
+        if (isLoading) {
+          this.submitBtn.disabled = true;
+          this.submitBtn.textContent = 'Sending...';
+          this.submitBtn.classList.add('loading');
+        } else {
+          this.submitBtn.disabled = false;
+          this.submitBtn.textContent = this.originalBtnText;
+          this.submitBtn.classList.remove('loading');
+        }
+      }
+
+      showMessage(message, type) {
+        // Clear previous messages
+        this.messageContainer.innerHTML = '';
+
+        const messageEl = document.createElement('div');
+        messageEl.className = `${type}-message`;
+        messageEl.innerHTML = `
+                    <div class="flex items-center space-x-2">
+                        <div class="w-4 h-4 text-current">
+                            ${type === 'success' ? '✓' : '✗'}
+                        </div>
+                        <div>${message}</div>
+                    </div>
+                `;
+
+        this.messageContainer.appendChild(messageEl);
+
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+          if (messageEl.parentNode) {
+            messageEl.style.transition = 'opacity 0.3s ease-out';
+            messageEl.style.opacity = '0';
+            setTimeout(() => {
+              if (messageEl.parentNode) {
+                messageEl.remove();
+              }
+            }, 300);
+          }
+        }, 5000);
+      }
+
+      showSuccess(message) {
+        this.showMessage(message, 'success');
+      }
+
+      showError(message) {
+        this.showMessage(message, 'error');
+      }
+    }
+
+    // Initialize the contact form when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      new ContactForm();
+    });
+  </script>
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+    menuToggle.addEventListener('click', function () {
+      menuToggle.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      mobileOverlay.classList.toggle('active');
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+    });
+
+    mobileOverlay.addEventListener('click', function () {
+      menuToggle.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      mobileOverlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', function () {
+        menuToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        mobileOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+    });
+
+    function resetTypingAnimation() {
+      const typedText = document.getElementById('typed-text');
+      typedText.style.animation = 'none';
+      typedText.offsetHeight;
+      typedText.style.animation = 'typing 3s steps(40, end), blink-caret 0.75s step-end infinite';
+    }
+
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    document.querySelector('form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const name = this.querySelector('input[type="text"]').value;
+      const email = this.querySelector('input[type="email"]').value;
+      const message = this.querySelector('textarea').value;
+
+      if (!name || !email || !message) {
+        alert('Please fill in all fields');
+        return;
+      }
+
+      const submitButton = this.querySelector('button[type="submit"]');
+      const originalText = submitButton.textContent;
+      submitButton.textContent = 'Sending...';
+      submitButton.disabled = true;
+
+      setTimeout(() => {
+        submitButton.textContent = 'Message Sent!';
+        setTimeout(() => {
+          submitButton.textContent = originalText;
+          submitButton.disabled = false;
+          this.reset();
+        }, 2000);
+      }, 1000);
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const terminalPrompts = document.querySelectorAll('.text-green-600');
+      terminalPrompts.forEach(prompt => {
+        const cursor = document.createElement('span');
+        cursor.textContent = '|';
+        cursor.className = 'terminal-cursor';
+        prompt.parentNode.appendChild(cursor);
+      });
+
+      initializeBackgroundEffects();
+    });
+
+    function initializeBackgroundEffects() {
+      createParticles();
+      createFloatingCode();
+    }
+
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const isMobile = window.innerWidth < 768;
+      const particleCount = isMobile ? 10 : 20;
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    function createFloatingCode() {
+      const matrixContainer = document.getElementById('matrix-bg');
+      const isMobile = window.innerWidth < 768;
+      const codeSnippets = [
+        'function hack() {',
+        'const data = [];',
+        'if (secure) {',
+        'return true;',
+        '}',
+        'console.log("Hello World");',
+        'npm install',
+        'git push origin main',
+        'sudo chmod +x',
+        'ping 127.0.0.1',
+        'ls -la',
+        'cat /etc/passwd',
+        'ssh user@server',
+        'docker run -d',
+        'kubectl apply -f',
+        'SELECT * FROM users;',
+        'import { React }',
+        'const express = require',
+        'async function getData()',
+        'export default App;',
+        'npm start',
+        'yarn build',
+        'git commit -m',
+        'python3 script.py',
+        'node server.js',
+        'curl -X GET',
+        'mkdir new-project',
+        'cd ~/Documents',
+        'vim config.json',
+        'chmod 755 file.sh'
+      ];
+
+      function addFloatingCode() {
+        const code = document.createElement('div');
+        code.className = 'floating-code';
+        code.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+        code.style.left = Math.random() * 100 + '%';
+        code.style.animationDelay = '0s';
+        code.style.animationDuration = (15 + Math.random() * 10) + 's';
+        matrixContainer.appendChild(code);
+
+        setTimeout(() => {
+          if (code.parentNode) {
+            code.parentNode.removeChild(code);
+          }
+        }, 25000);
+      }
+
+      const interval = isMobile ? 4000 : 2000;
+      setInterval(addFloatingCode, interval);
+
+      const initialCount = isMobile ? 3 : 5;
+      for (let i = 0; i < initialCount; i++) {
+        setTimeout(addFloatingCode, i * 1000);
+      }
+    }
+
+    window.addEventListener('scroll', function () {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(0, 0, 0, 0.95)';
+      } else {
+        nav.style.background = 'rgba(0, 0, 0, 0.9)';
+      }
+    });
+  </script>
+</body>
+
+</html>
